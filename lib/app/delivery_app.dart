@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vakinhaburger/app/core/provider/application_binding.dart';
 import 'package:vakinhaburger/app/core/ui/theme/theme_config.dart';
 import 'package:vakinhaburger/app/pages/splash/splash_page.dart';
 
@@ -7,12 +8,14 @@ class DeliveryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Delivery App',
-      theme: ThemeConfig.theme,
-      routes: {
-        '/': (context) => const SplashPage(),
-      },
+    return ApplicationBinding(
+      child: MaterialApp(
+        title: 'Delivery App',
+        theme: ThemeConfig.theme,
+        routes: {
+          '/': (context) => const SplashPage(),
+        },
+      ),
     );
   }
 }

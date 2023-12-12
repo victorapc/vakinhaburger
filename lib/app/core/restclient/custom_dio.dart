@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:vakinhaburger/app/core/config/env/env.dart';
 
-class CutomDio extends DioForNative {
-  CutomDio()
+class CustomDio extends DioForNative {
+  CustomDio()
       : super(BaseOptions(
             baseUrl: Env.i['backend_base_url'] ?? '',
             connectTimeout: const Duration(seconds: 5),
@@ -15,11 +15,11 @@ class CutomDio extends DioForNative {
     ));
   }
 
-  CutomDio auth() {
+  CustomDio auth() {
     return this;
   }
 
-  CutomDio unauth() {
+  CustomDio unauth() {
     return this;
   }
 }
