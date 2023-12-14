@@ -20,7 +20,9 @@ class ProductsRepositoryImpl implements ProductsRepository {
       final result = await dio.unauth().get('/products');
 
       return result.data
-          .map<ProductModel>((p) => ProductModel.fromJson(p))
+          .map<ProductModel>(
+            (p) => ProductModel.fromMap(p),
+          )
           .toList();
     } on DioException catch (e, s) {
       log('Erro ao buscar produtos', error: e, stackTrace: s);
