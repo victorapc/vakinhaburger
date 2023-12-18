@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:match/match.dart';
 
 import 'package:vakinhaburger/app/models/product_model.dart';
