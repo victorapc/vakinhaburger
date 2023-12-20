@@ -10,6 +10,8 @@ import 'package:vakinhaburger/app/core/ui/widgets/delivery_increment_decrement_b
 import 'package:vakinhaburger/app/models/product_model.dart';
 import 'package:vakinhaburger/app/pages/product_detail/bloc/product_detail_controler.dart';
 
+import '../../dto/order _product_dto.dart';
+
 class ProductDetailPage extends StatefulWidget {
   final ProductModel product;
 
@@ -87,7 +89,10 @@ class _ProductDetailPageState
                 child: BlocBuilder<ProductDetailControler, int>(
                   builder: (context, amount) {
                     return ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop(OrderProductDto(
+                            product: widget.product, amount: amount));
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
