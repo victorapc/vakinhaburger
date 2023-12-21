@@ -6,12 +6,12 @@ import 'package:vakinhaburger/app/core/ui/helpers/messages.dart';
 
 abstract class BaseState<T extends StatefulWidget, C extends BlocBase>
     extends State<T> with Loader, Messages {
-  late final C controler;
+  late final C controller;
 
   @override
   void initState() {
     super.initState();
-    controler = context.read<C>();
+    controller = context.read<C>();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       onReady();
     });

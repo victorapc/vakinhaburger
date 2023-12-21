@@ -9,8 +9,13 @@ import 'package:vakinhaburger/app/pages/home/bloc/home_controller.dart';
 
 class DeliveryProductTile extends StatelessWidget {
   final ProductModel product;
+  final OrderProductDto? orderProductDto;
 
-  const DeliveryProductTile({super.key, required this.product});
+  const DeliveryProductTile({
+    super.key,
+    required this.product,
+    required this.orderProductDto,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class DeliveryProductTile extends StatelessWidget {
         final orderProduct =
             await Navigator.of(context).pushNamed('/productDetail', arguments: {
           'product': product,
+          'order': orderProductDto,
         });
 
         if (orderProduct != null) {
