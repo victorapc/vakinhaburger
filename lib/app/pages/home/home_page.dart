@@ -5,6 +5,7 @@ import 'package:vakinhaburger/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:vakinhaburger/app/pages/home/bloc/home_controller.dart';
 import 'package:vakinhaburger/app/pages/home/bloc/home_state.dart';
 import 'package:vakinhaburger/app/pages/home/widgets/delivery_product_tile.dart';
+import 'package:vakinhaburger/app/pages/home/widgets/shopping_bag_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -57,6 +58,10 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
                     );
                   },
                 ),
+              ),
+              Visibility(
+                visible: state.shoppingBag.isNotEmpty,
+                child: ShoppingBagWidget(bag: state.shoppingBag),
               ),
             ],
           );
