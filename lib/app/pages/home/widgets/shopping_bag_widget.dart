@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vakinhaburger/app/core/extensions/formatter_extension.dart';
 import 'package:vakinhaburger/app/core/ui/helpers/size_extensions.dart';
 import 'package:vakinhaburger/app/core/ui/styles/text_styles.dart';
@@ -8,6 +9,15 @@ class ShoppingBagWidget extends StatelessWidget {
   final List<OrderProductDto> bag;
 
   const ShoppingBagWidget({super.key, required this.bag});
+
+  Future<void> _goOrder(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    final sp = await SharedPreferences.getInstance();
+
+    if (!sp.containsKey('accessToken')) {
+      final loginResult = await navigator.pushNamed('/auth/login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,9 @@ class ShoppingBagWidget extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            _goOrder(context);
+          },
           child: Stack(
             children: [
               const Align(
