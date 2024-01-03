@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vakinhaburger/app/core/ui/styles/text_styles.dart';
 import 'package:vakinhaburger/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:vakinhaburger/app/core/ui/widgets/delivery_button.dart';
+import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +12,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Form(
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -32,24 +45,38 @@ class _LoginPageState extends State<LoginPage> {
                       height: 30,
                     ),
                     TextFormField(
+                      controller: _emailEC,
                       decoration: const InputDecoration(
                         labelText: 'E-mail',
                       ),
+                      validator: Validatorless.multiple([
+                        Validatorless.required('E-mail obrigatório.'),
+                        Validatorless.email('E-mail inválido.')
+                      ]),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     TextFormField(
+                      controller: _passwordEC,
                       decoration: const InputDecoration(
                         labelText: 'Senha',
                       ),
+                      validator: Validatorless.multiple([
+                        Validatorless.required('Senha obrigatória.'),
+                      ]),
                     ),
                     const SizedBox(
                       height: 50,
                     ),
                     Center(
                       child: DeliveryButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final valid =
+                              _formKey.currentState?.validate() ?? false;
+
+                          if (valid) {}
+                        },
                         label: 'Entrar',
                         width: double.infinity,
                       ),
