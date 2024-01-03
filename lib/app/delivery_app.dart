@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vakinhaburger/app/core/provider/application_binding.dart';
 import 'package:vakinhaburger/app/core/ui/theme/theme_config.dart';
 import 'package:vakinhaburger/app/pages/auth/login/login_page.dart';
-import 'package:vakinhaburger/app/pages/auth/register/register_page.dart';
+import 'package:vakinhaburger/app/pages/auth/register/register_router.dart';
 import 'package:vakinhaburger/app/pages/home/home_router.dart';
 import 'package:vakinhaburger/app/pages/product_detail/product_detail_router.dart';
 import 'package:vakinhaburger/app/pages/splash/splash_page.dart';
@@ -21,7 +21,7 @@ class DeliveryApp extends StatelessWidget {
           '/home': (context) => HomeRouter.page,
           '/productDetail': (context) => ProductDetailRouter.page,
           '/auth/login': (context) => const LoginPage(),
-          '/auth/register': (context) => const RegisterPage(),
+          '/auth/register': (context) => RegisterRouter.page,
         },
       ),
     );
