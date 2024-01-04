@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:match/match.dart';
 
 part 'login_state.g.dart';
@@ -31,11 +30,11 @@ class LoginState extends Equatable {
 
   LoginState copyWith({
     LoginStatus? status,
-    ValueGetter<String?>? errorMessage,
+    String? errorMessage,
   }) {
     return LoginState(
       status: status ?? this.status,
-      errorMessage: errorMessage?.call() ?? this.errorMessage,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }
