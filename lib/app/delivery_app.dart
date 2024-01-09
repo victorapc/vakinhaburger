@@ -4,7 +4,7 @@ import 'package:vakinhaburger/app/core/ui/theme/theme_config.dart';
 import 'package:vakinhaburger/app/pages/auth/login/login_router.dart';
 import 'package:vakinhaburger/app/pages/auth/register/register_router.dart';
 import 'package:vakinhaburger/app/pages/home/home_router.dart';
-import 'package:vakinhaburger/app/pages/order/order_page.dart';
+import 'package:vakinhaburger/app/pages/order/order_router.dart';
 import 'package:vakinhaburger/app/pages/product_detail/product_detail_router.dart';
 import 'package:vakinhaburger/app/pages/splash/splash_page.dart';
 
@@ -23,7 +23,7 @@ class DeliveryApp extends StatelessWidget {
           '/productDetail': (context) => ProductDetailRouter.page,
           '/auth/login': (context) => LoginRouter.page,
           '/auth/register': (context) => RegisterRouter.page,
-          '/order': (context) => const OrderPage(),
+          '/order': (context) => OrderRouter.page,
         },
       ),
     );
