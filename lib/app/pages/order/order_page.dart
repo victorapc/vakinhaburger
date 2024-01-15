@@ -99,6 +99,13 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                 'Sua sacola está vazia, por favor seleione um produto para realizar um pedido.');
             Navigator.pop(context, <OrderProductDto>[]);
           },
+          success: () {
+            hideLoader();
+            Navigator.of(context).popAndPushNamed(
+              '/order/completed',
+              result: <OrderProductDto>[],
+            );
+          },
         );
       },
       child: WillPopScope(
@@ -251,7 +258,13 @@ class _OrderPageState extends BaseState<OrderPage, OrderController> {
                             final paymentTypeSelected = paymentTypeId != null;
                             paymentTypeValid.value = paymentTypeSelected;
 
-                            if (valid) {}
+                            if (valid && paymentTypeSelected) {
+                              controller.saveOrder(
+                                address: addressEC.text,
+                                document: documentEC.text,
+                                paymentMethodId: paymentTypeId!,
+                              );
+                            }
                           },
                         ),
                       ),

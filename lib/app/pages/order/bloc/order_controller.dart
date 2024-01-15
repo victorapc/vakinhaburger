@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:vakinhaburger/app/dto/order%20_product_dto.dart';
+import 'package:vakinhaburger/app/dto/order_dto.dart';
 import 'package:vakinhaburger/app/pages/order/bloc/order_state.dart';
 import 'package:vakinhaburger/app/repositories/order/order_repository.dart';
 
@@ -79,5 +80,19 @@ class OrderController extends Cubit<OrderState> {
 
   emptyBag() {
     emit(state.copyWith(status: OrderStatus.emptyBag));
+  }
+
+  Future<void> saveOrder(
+      {required String address,
+      required String document,
+      required int paymentMethodId}) async {
+    emit(state.copyWith(status: OrderStatus.loading));
+    await _orderRepository.saveOrder(OrderDto(
+      products: state.orderProducts,
+      address: address,
+      document: document,
+      paymentMethodId: paymentMethodId,
+    ));
+    emit(state.copyWith(status: OrderStatus.success));
   }
 }
