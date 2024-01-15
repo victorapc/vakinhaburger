@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:match/match.dart';
 
 import 'package:vakinhaburger/app/dto/order%20_product_dto.dart';
@@ -13,6 +12,8 @@ enum OrderStatus {
   loading,
   loaded,
   error,
+  updateOrder,
+  confirmRemoveProduct,
 }
 
 class OrderState extends Equatable {
@@ -34,6 +35,9 @@ class OrderState extends Equatable {
         paymentTypes = const [],
         errorMassage = null;
 
+  double get totalOrder => orderProducts.fold(
+      0.0, (previousValue, element) => previousValue + element.totalPrice);
+
   @override
   List<Object?> get props =>
       [status, orderProducts, paymentTypes, errorMassage];
@@ -51,4 +55,18 @@ class OrderState extends Equatable {
       errorMassage: errorMassage ?? this.errorMassage,
     );
   }
+}
+
+class OrderConfirmDeleteProductState extends OrderState {
+  final OrderProductDto orderProduct;
+  final int index;
+
+  const OrderConfirmDeleteProductState({
+    required this.orderProduct,
+    required this.index,
+    required super.status,
+    required super.orderProducts,
+    required super.paymentTypes,
+    super.errorMassage,
+  });
 }
